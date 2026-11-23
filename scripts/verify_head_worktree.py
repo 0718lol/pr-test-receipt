@@ -144,7 +144,12 @@ def detect_missing_deps(exit_code: int, combined: str) -> tuple[bool, str | None
 
 
 def detect_zero_tests(exit_code: int, combined: str) -> bool:
-    if exit_code != 0:
+    # Exit 0 catches silent false-pass runners (Go, Cargo, Jest --passWithNoTests,
+    # Python <3.12 unittest); exit 5 is standard "no tests ran" in pytest and
+    # Python 3.12+ unittest.
+    if exit_code not in (0, 5):
+        return False
+    if ASSERTION_FAILURE_RE.search(combined):
         return False
     for pat in ZERO_TESTS_PATTERNS:
         if pat.search(combined):
@@ -422,6 +427,8 @@ def main() -> int:
             zero_tests = detect_zero_tests(exit_code, combined)
             if exit_code == 0:
                 result_status = "incomplete_zero_tests" if zero_tests else "pass"
+            elif zero_tests:
+                result_status = "incomplete_zero_tests"
             elif missing_deps:
                 result_status = "blocked_missing_deps"
             else:

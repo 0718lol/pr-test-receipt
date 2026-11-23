@@ -175,6 +175,21 @@ class PrTestReceiptScriptsTests(unittest.TestCase):
         self.assertEqual(vres["result_status"], "incomplete_zero_tests")
         self.assertTrue(vres["signals"]["zero_tests_suspected"])
 
+        # Also verify silent exit-0 zero-test false pass (e.g. Cargo / Go / Jest --passWithNoTests)
+        rc0, vres0, _ = run_json([
+            sys.executable,
+            str(VERIFY),
+            "--repo",
+            str(repo),
+            "--",
+            sys.executable,
+            "-c",
+            "print('test result: ok. 0 passed; 0 failed; 0 ignored')",
+        ])
+        self.assertEqual(rc0, 0)
+        self.assertEqual(vres0["result_status"], "incomplete_zero_tests")
+        self.assertTrue(vres0["signals"]["zero_tests_suspected"])
+
     def test_untracked_local_file_is_fail_not_missing_deps(self) -> None:
         repo = self.tmp_root / "untracked_mod"
         init_repo(repo)
