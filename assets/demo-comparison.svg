@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 660" width="1200" height="660" role="img" aria-label="PR Test Receipt Before vs After Comparison">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1017"/>
+      <stop offset="100%" stop-color="#111824"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#34d399"/>
+    </linearGradient>
+    <linearGradient id="warnGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#f87171"/>
+      <stop offset="100%" stop-color="#fb923c"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="10" stdDeviation="14" flood-color="#000000" flood-opacity="0.38"/>
+    </filter>
+    <style>
+      .sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; }
+      .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+    </style>
+  </defs>
+
+  <!-- Canvas -->
+  <rect width="1200" height="660" rx="18" fill="url(#bgGrad)"/>
+  <rect x="0.75" y="0.75" width="1198.5" height="658.5" rx="17.5" fill="none" stroke="#243041" stroke-width="1.5"/>
+
+  <!-- Header -->
+  <rect x="36" y="28" width="186" height="28" rx="14" fill="#13263a" stroke="#285075" stroke-width="1"/>
+  <text x="129" y="46" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#67e8f9" letter-spacing="0.6">PR TEST RECEIPT v1.1</text>
+
+  <text x="238" y="48" class="sans" font-size="22" font-weight="700" fill="#f1f5f9">Stop shipping "tests pass (trust me bro)" PRs</text>
+
+  <!-- Right header pills -->
+  <rect x="852" y="28" width="90" height="28" rx="14" fill="#16202e" stroke="#2a394e" stroke-width="1"/>
+  <text x="897" y="46" text-anchor="middle" class="mono" font-size="11.5" fill="#94a3b8">Zero deps</text>
+  <rect x="952" y="28" width="104" height="28" rx="14" fill="#16202e" stroke="#2a394e" stroke-width="1"/>
+  <text x="1004" y="46" text-anchor="middle" class="mono" font-size="11.5" fill="#94a3b8">Read-only</text>
+  <rect x="1066" y="28" width="98" height="28" rx="14" fill="#132b24" stroke="#1e5645" stroke-width="1"/>
+  <text x="1115" y="46" text-anchor="middle" class="mono" font-size="11.5" fill="#6ee7b7">Worktree</text>
+
+  <text x="36" y="79" class="sans" font-size="14" fill="#94a3b8">Compares local working tree vs. isolated committed HEAD so uncommitted fixes never fake a green PR before CI runs.</text>
+
+  <!-- ==================== LEFT CARD: BEFORE ==================== -->
+  <g filter="url(#cardShadow)">
+    <rect x="36" y="102" width="448" height="510" rx="14" fill="#141b24" stroke="#293548" stroke-width="1.2"/>
+    <rect x="36" y="102" width="448" height="4" rx="2" fill="url(#warnGrad)"/>
+  </g>
+
+  <rect x="56" y="122" width="76" height="24" rx="12" fill="#321b20" stroke="#7f2b33" stroke-width="1"/>
+  <text x="94" y="138" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="#fca5a5">BEFORE</text>
+  <text x="144" y="139" class="sans" font-size="16" font-weight="700" fill="#e2e8f0">Typical AI PR Summary</text>
+
+  <!-- Mini terminal in Before card -->
+  <rect x="56" y="162" width="408" height="148" rx="10" fill="#0c1118" stroke="#222e3e" stroke-width="1"/>
+  <circle cx="74" cy="178" r="4.5" fill="#f87171"/>
+  <circle cx="90" cy="178" r="4.5" fill="#fbbf24"/>
+  <circle cx="106" cy="178" r="4.5" fill="#34d399"/>
+  <text x="124" y="182" class="mono" font-size="11" fill="#64748b">local checkout (dirty)</text>
+
+  <text x="70" y="208" class="mono" font-size="12.5" fill="#7dd3fc">$ git status -sb</text>
+  <text x="70" y="227" class="mono" font-size="12.5" fill="#cbd5e1">## fix/shipping-threshold</text>
+  <text x="70" y="246" class="mono" font-size="12.5" fill="#fbbf24"> M shipping.mjs  # unstaged fix!</text>
+  <text x="70" y="272" class="mono" font-size="12.5" fill="#7dd3fc">$ node --test</text>
+  <text x="70" y="292" class="mono" font-size="12.5" fill="#4ade80">✔ tests 2 · pass 2 · fail 0 (exit 0)</text>
+
+  <!-- False green AI response -->
+  <rect x="56" y="328" width="408" height="92" rx="10" fill="#182230" stroke="#2c3c52" stroke-width="1"/>
+  <text x="74" y="352" class="mono" font-size="11" font-weight="700" fill="#94a3b8">AI AGENT REPLY</text>
+  <text x="74" y="378" class="sans" font-size="14.5" font-weight="600" fill="#86efac">✓ All 2 tests passed! Ready to open PR.</text>
+  <text x="74" y="402" class="sans" font-size="13" fill="#94a3b8">Tested locally on fix/shipping-threshold.</text>
+
+  <!-- Down arrow to CI boom -->
+  <line x1="260" y1="428" x2="260" y2="452" stroke="#64748b" stroke-width="1.8" stroke-dasharray="3 3"/>
+  <polygon points="254,450 266,450 260,459" fill="#f87171"/>
+
+  <!-- CI Failure card -->
+  <rect x="56" y="466" width="408" height="126" rx="10" fill="#231419" stroke="#7f2b33" stroke-width="1.2"/>
+  <rect x="72" y="482" width="128" height="22" rx="11" fill="#4c1922"/>
+  <text x="136" y="497" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="#fda4af">✖ CI FAILED</text>
+  <text x="212" y="497" class="mono" font-size="12" fill="#fca5a5">commit ce876dc</text>
+  <text x="72" y="527" class="mono" font-size="12.5" fill="#fecdd3">AssertionError: 5 !== 0</text>
+  <text x="72" y="546" class="mono" font-size="11.5" fill="#fda4af">at shipping.test.mjs:10 (threshold case)</text>
+  <text x="72" y="574" class="sans" font-size="12.5" fill="#f8b4b4">Fix lived in unstaged working tree — never shipped.</text>
+
+  <!-- ==================== CENTER CONNECTOR ==================== -->
+  <circle cx="514" cy="356" r="20" fill="#13263a" stroke="#38bdf8" stroke-width="1.5"/>
+  <path d="M505 356 L521 356 M516 350 L522 356 L516 362" fill="none" stroke="#67e8f9" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- ==================== RIGHT CARD: AFTER ==================== -->
+  <g filter="url(#cardShadow)">
+    <rect x="544" y="102" width="620" height="510" rx="14" fill="#141b24" stroke="#293548" stroke-width="1.2"/>
+    <rect x="544" y="102" width="620" height="4" rx="2" fill="url(#accentGrad)"/>
+  </g>
+
+  <rect x="566" y="122" width="68" height="24" rx="12" fill="#102d24" stroke="#1f6f54" stroke-width="1"/>
+  <text x="600" y="138" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="#6ee7b7">AFTER</text>
+  <text x="646" y="139" class="sans" font-size="16" font-weight="700" fill="#f1f5f9">PR Test Receipt</text>
+  <text x="780" y="139" class="sans" font-size="13.5" fill="#94a3b8">· paste-ready for GitHub / GitLab</text>
+
+  <!-- Rendered Markdown PR Receipt inner card -->
+  <rect x="566" y="162" width="576" height="430" rx="12" fill="#0d131c" stroke="#29384d" stroke-width="1.2"/>
+
+  <!-- Receipt title row -->
+  <text x="588" y="194" class="sans" font-size="17" font-weight="700" fill="#f8fafc">PR Test Receipt</text>
+  <rect x="984" y="175" width="138" height="26" rx="13" fill="#3a191f" stroke="#992d3b" stroke-width="1"/>
+  <text x="1053" y="192" text-anchor="middle" class="mono" font-size="11.5" font-weight="700" fill="#fca5a5">CHANGES NEEDED</text>
+
+  <line x1="588" y1="212" x2="1122" y2="212" stroke="#1f2c3d" stroke-width="1"/>
+
+  <!-- Metadata block -->
+  <text x="588" y="236" class="sans" font-size="12.5" font-weight="600" fill="#94a3b8">Scope:</text>
+  <text x="636" y="236" class="mono" font-size="12" fill="#e2e8f0">fix/shipping-threshold (ce876dc) vs main (d46a8e0)</text>
+
+  <text x="588" y="259" class="sans" font-size="12.5" font-weight="600" fill="#94a3b8">Tree:</text>
+  <rect x="628" y="245" width="60" height="20" rx="6" fill="#3b2810" stroke="#925b16" stroke-width="1"/>
+  <text x="658" y="259" text-anchor="middle" class="mono" font-size="11" font-weight="700" fill="#fcd34d">DIRTY</text>
+  <text x="698" y="259" class="mono" font-size="12" fill="#fbbf24">1 unstaged file overlaps PR diff: shipping.mjs</text>
+
+  <!-- Split Result Table -->
+  <rect x="588" y="280" width="534" height="84" rx="8" fill="#121a26" stroke="#253449" stroke-width="1"/>
+  <rect x="588" y="280" width="534" height="32" rx="8" fill="#192434"/>
+  <line x1="588" y1="312" x2="1122" y2="312" stroke="#253449" stroke-width="1"/>
+  <line x1="744" y1="280" x2="744" y2="364" stroke="#253449" stroke-width="1"/>
+  <line x1="932" y1="280" x2="932" y2="364" stroke="#253449" stroke-width="1"/>
+
+  <text x="604" y="300" class="sans" font-size="12" font-weight="700" fill="#cbd5e1">Check</text>
+  <text x="760" y="300" class="sans" font-size="12" font-weight="700" fill="#cbd5e1">Working tree (dirty)</text>
+  <text x="948" y="300" class="sans" font-size="12" font-weight="700" fill="#cbd5e1">Committed ce876dc</text>
+
+  <text x="604" y="343" class="mono" font-size="13" font-weight="600" fill="#f1f5f9">node --test</text>
+
+  <rect x="760" y="325" width="112" height="24" rx="6" fill="#113125" stroke="#1e6a4f" stroke-width="1"/>
+  <text x="816" y="341" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#6ee7b7">PASS (2/2)</text>
+
+  <rect x="948" y="325" width="112" height="24" rx="6" fill="#3a191f" stroke="#992d3b" stroke-width="1"/>
+  <text x="1004" y="341" text-anchor="middle" class="mono" font-size="12" font-weight="700" fill="#fca5a5">FAIL (1/2)</text>
+
+  <!-- Smoking gun callout -->
+  <rect x="588" y="382" width="534" height="94" rx="8" fill="#1f1912" stroke="#6d4a17" stroke-width="1"/>
+  <rect x="588" y="382" width="4" height="94" rx="2" fill="#f59e0b"/>
+  <text x="606" y="405" class="sans" font-size="13" font-weight="700" fill="#fde68a">Gap caught before push</text>
+  <text x="606" y="427" class="sans" font-size="12.5" fill="#e2e8f0">• Unstaged fix in shipping.mjs makes local tests pass.</text>
+  <text x="606" y="447" class="sans" font-size="12.5" fill="#e2e8f0">• Committed HEAD (ce876dc) fails threshold test (5 !== 0).</text>
+  <text x="606" y="467" class="sans" font-size="12.5" fill="#93c5fd">→ Next step: stage &amp; commit shipping.mjs:2, then re-run.</text>
+
+  <!-- Collapsible details footer -->
+  <rect x="588" y="492" width="534" height="80" rx="8" fill="#101824" stroke="#223044" stroke-width="1"/>
+  <text x="604" y="514" class="sans" font-size="12.5" font-weight="600" fill="#cbd5e1">▾ Exact commands &amp; verification integrity</text>
+  <text x="604" y="536" class="mono" font-size="11.5" fill="#94a3b8">• Working tree: node --test → exit 0 (2 passed, 0 failed)</text>
+  <text x="604" y="556" class="mono" font-size="11.5" fill="#6ee7b7">• Isolated HEAD: exit 1 (1 passed, 1 failed) · main repo untouched ✓</text>
+
+  <!-- Bottom Footer -->
+  <text x="36" y="640" class="mono" font-size="12" fill="#64748b">github.com/0718lol/pr-test-receipt</text>
+  <text x="1164" y="640" text-anchor="end" class="sans" font-size="12" fill="#64748b">Free skill for Claude Code · Codex · Cursor · Gemini CLI · Agensi</text>
+</svg>

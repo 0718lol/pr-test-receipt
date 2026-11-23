@@ -8,6 +8,10 @@
 
 `PR Test Receipt` is a zero-dependency AI coding agent skill for **Claude Code, Codex CLI, Cursor, Gemini CLI, Windsurf, and Agensi**. Before you open or push a pull request, it compares your branch against its base, runs targeted local checks, separates dirty working-tree runs from committed `HEAD`, and generates a **paste-ready GitHub/GitLab Test Receipt**.
 
+<p align="center">
+  <img src="assets/demo-comparison.svg" alt="PR Test Receipt — Before vs. After comparison showing dirty working tree passing while isolated committed HEAD fails" width="100%" />
+</p>
+
 ---
 
 ## Why This Exists
@@ -100,6 +104,12 @@ Just ask your coding agent naturally before pushing or opening a PR:
 ```bash
 python3 -m unittest discover -s tests -v
 ```
+
+## Related Skills
+
+- **[skill-slim](https://github.com/0718lol/skill-slim)** — Audit always-on token costs and safely slim down AI coding agent skills across Claude Code, Codex, Gemini CLI, and Cursor.
+- **[verify-engineering-work](https://github.com/0718lol/verify-engineering-work)** — Full risk-aware reliability workflow for AI coding agents.
+- **[scout-before-build](https://github.com/0718lol/scout-before-build)** — Scouts GitHub repositories and design references before starting a build.
 
 ## License
 
